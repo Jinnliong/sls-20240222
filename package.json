@@ -1,10 +1,10 @@
 {
   "name": "sls-20240222",
   "version": "1.0.0",
-  "description": "Today is 22 February 2024. Hello Jinn Liong!",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "serverless": "^3.38.0"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "serverless-offline": "^13.3.3"
   }
 }
