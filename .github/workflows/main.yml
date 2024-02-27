@@ -46,9 +46,11 @@ jobs:
     - name: Fetch Secret from AWS Secrets Manager
       id: fetch_secret  
       run: | 
-        SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text)
-        echo "::add-mask::$SECRET_VALUE"  
-        echo "::set-output name=secret_value::$SECRET_VALUE"  
+        aws configure set default.debug true
+        SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text) || exit 1  # Make it fail explicitly
+        echo "Retrieved Secret Value (if successful):" $SECRET_VALUE   
+        echo "::add-mask::$SECRET_VALUE"
+        echo "::set-output name=secret_value::$SECRET_VALUE" "  
     - name: Use secret in code 
       run: |
         echo "The secret value is: ${MY_SECRET}" 
