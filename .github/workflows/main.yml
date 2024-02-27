@@ -43,10 +43,8 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: "ap-southeast-1"
-    - name: Fetch Secret
-      run: | 
-        aws configure set default.debug true
+    - name: Retrieve Secret Value
+      run: |
         if ! SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString.serverless_db_password --output text); then
           echo "::error::Secret retrieval failed. AWS CLI output:"
           aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text 
@@ -55,6 +53,10 @@ jobs:
         echo "Retrieved Secret Value (if successful):" $SECRET_VALUE   
         echo "::add-mask::$SECRET_VALUE"
         echo "::set-output name=secret_value::$SECRET_VALUE"
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
     - name: Use secret in code 
       run: |
         echo "The secret value is: ${MY_SECRET}" 
