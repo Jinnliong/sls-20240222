@@ -45,12 +45,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Retrieve Secret Value
       run: |
-        if ! SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text); then
-          echo "::error::Secret retrieval failed. AWS CLI output:"
-          aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text 
-          exit 1
-        fi
-        echo "Retrieved Secret Value (if successful):" $SECRET_VALUE   
+        aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text 
         echo "::add-mask::$SECRET_VALUE"
         echo "::set-output name=secret_value::$SECRET_VALUE"
       env:
