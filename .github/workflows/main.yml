@@ -51,7 +51,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Retrieve Secret
       run: |
-        SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text)
+        SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing)
         echo "Retrieved Secret Value: $SECRET_VALUE"
     - name: Use secret in code 
       run: |
