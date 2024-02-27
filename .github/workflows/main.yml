@@ -48,10 +48,6 @@ jobs:
         aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text 
         echo "::add-mask::$SECRET_VALUE"
         echo "::set-output name=secret_value::$SECRET_VALUE"
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      
     - name: Use secret in code 
       run: |
         echo "The secret value is: ${MY_SECRET}" 
