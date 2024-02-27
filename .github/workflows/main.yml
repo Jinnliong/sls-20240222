@@ -46,7 +46,7 @@ jobs:
     - name: Fetch Secret
       run: | 
         aws configure set default.debug true
-        SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing-16loKI --query SecretString.serverless_db_password --output text) || exit 1
+        SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString.serverless_db_password --output text) || exit 1
         echo "Retrieved Secret Value (if successful):" $SECRET_VALUE   
         echo "::add-mask::$SECRET_VALUE"
         echo "::set-output name=secret_value::$SECRET_VALUE" 
