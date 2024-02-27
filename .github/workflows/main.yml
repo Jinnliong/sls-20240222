@@ -46,7 +46,7 @@ jobs:
     - name: Fetch Secret
       run: | 
         aws configure set default.debug true
-        aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString.serverless_db_password --output text || aws iam simulate-principal-policy --policy-source-arn arn:aws:iam::255945442255:<user or role name associated with the workflow> --action-names secretsmanager:GetSecretValue --resource-arns arn:aws:secretsmanager:<your-region>:<your-account-id>:secret:jl-testing
+        aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString.serverless_db_password --output text || aws iam simulate-principal-policy --policy-source-arn arn:aws:iam::255945442255:user/chinjinnliong --action-names secretsmanager:GetSecretValue --resource-arns arn:aws:secretsmanager:ap-southeast-1:255945442255:secret:jl-testing
     - name: Use secret in code 
       run: |
         echo "The secret value is: ${MY_SECRET}" 
