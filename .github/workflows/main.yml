@@ -44,11 +44,11 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Fetch Secret from AWS Secrets Manager
-      id: fetch_secret  # Give the step an ID 
+      id: fetch_secret  
       run: | 
         SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id jl-testing --query SecretString --output text)
-        echo "::add-mask::$SECRET_VALUE"  # Mask the value in the logs
-        echo "::set-output name=secret_value::$SECRET_VALUE"  # Set an output  
+        echo "::add-mask::$SECRET_VALUE"  
+        echo "::set-output name=secret_value::$SECRET_VALUE"  
     - name: Use secret in code 
       run: |
         echo "The secret value is: ${MY_SECRET}" 
