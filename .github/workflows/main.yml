@@ -51,8 +51,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         MY_SECRET: ${{ steps.fetch_secret.outputs.secret_value }}
     - name: Use secret in code 
-        run: |
-          # Assuming your code can access an environment variable named MY_SECRET
-          echo "The secret value is: ${MY_SECRET}" 
-        env:
-          MY_SECRET: ${{ steps.fetch_secret.outputs.secret_value }} 
+      run: |
+        echo "The secret value is: ${MY_SECRET}" 
+      env:
+        MY_SECRET: ${{ steps.fetch_secret.outputs.secret_value }} 
