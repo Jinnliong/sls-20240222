@@ -1,0 +1,70 @@
+{
+    "EvaluationResults": [
+        {
+            "EvalActionName": "secretsmanager:GetSecretValue",
+            "EvalResourceName": "arn:aws:secretsmanager:ap-southeast-1:255945442255:secret:jl-testing-16loKI",
+            "EvalDecision": "allowed",
+            "MatchedStatements": [
+                {
+                    "SourcePolicyId": "user_chinjinnliong_JL_Secret_Manager",
+                    "SourcePolicyType": "IAM Policy",
+                    "StartPosition": {
+                        "Line": 3,
+                        "Column": 16
+                    },
+                    "EndPosition": {
+                        "Line": 9,
+                        "Column": 4
+                    }
+                },
+                {
+                    "SourcePolicyId": "AdministratorAccess",
+                    "SourcePolicyType": "IAM Policy",
+                    "StartPosition": {
+                        "Line": 3,
+                        "Column": 17
+                    },
+                    "EndPosition": {
+                        "Line": 8,
+                        "Column": 6
+                    }
+                }
+            ],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+                {
+                    "EvalResourceName": "arn:aws:secretsmanager:ap-southeast-1:255945442255:secret:jl-testing-16loKI",
+                    "EvalResourceDecision": "allowed",
+                    "MatchedStatements": [
+                        {
+                            "SourcePolicyId": "user_chinjinnliong_JL_Secret_Manager",
+                            "SourcePolicyType": "IAM Policy",
+                            "StartPosition": {
+                                "Line": 3,
+                                "Column": 16
+                            },
+                            "EndPosition": {
+                                "Line": 9,
+                                "Column": 4
+                            }
+                        },
+                        {
+                            "SourcePolicyId": "AdministratorAccess",
+                            "SourcePolicyType": "IAM Policy",
+                            "StartPosition": {
+                                "Line": 3,
+                                "Column": 17
+                            },
+                            "EndPosition": {
+                                "Line": 8,
+                                "Column": 6
+                            }
+                        }
+                    ],
+                    "MissingContextValues": []
+                }
+            ]
+        }
+    ]
+}
