@@ -62,10 +62,17 @@ jobs:
       env:
         MY_SECRET: ${{ steps.fetch_secret.outputs.secret_value }}
   scan:
-    name: perform vulnerability scan
+    name: Scan using SNYK
     runs-on: ubuntu-latest
-    needs: install-dependencies
+    needs: deploy
     steps:
-    - name: Run npm audit for Vulnerabilities
-      run: npm audit 
-    
+      - name: Install Snyk 
+        run: npm install -g snyk
+      - name: Run Snyk auth
+        id: auth
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk dependency scan (pre-deployment)
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
+        run: snyk iac test --severity-threshold=high 
+  
