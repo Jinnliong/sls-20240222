@@ -21,6 +21,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Run Installation of Dependencies Commands
         run: npm install
+      - name: Install Snyk 
+        run: npm install -g snyk
 
   deploy:
     name: deploy
@@ -57,4 +59,14 @@ jobs:
       run: |
         echo "The secret value is: ${MY_SECRET}" 
       env:
-        MY_SECRET: ${{ steps.fetch_secret.outputs.secret_value }} 
+        MY_SECRET: ${{ steps.fetch_secret.outputs.secret_value }}
+  Perform Vulnerability Scan:
+    name: Scan using SNYK
+    steps:
+      - name: Run Snyk auth
+        id: auth
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk dependency scan (pre-deployment)
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
+        run: snyk iac test --severity-threshold=high
