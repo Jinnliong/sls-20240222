@@ -74,5 +74,5 @@ jobs:
       - name: Run Snyk dependency scan (pre-deployment)
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
-        run: snyk iac test --severity-threshold=high 
+        run: snyk test --severity-threshold=high 
   
