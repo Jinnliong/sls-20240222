@@ -20,7 +20,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Generate package-lock.json
-        run: npm install --package-lock-only  
+        run: npm install --package-lock-only
+      - name: Verify package-lock.json exists 
+        run: ls -la package-lock.json # Add this line 
       - name: Run Installation of Dependencies Commands
         run: npm install
   deploy:
