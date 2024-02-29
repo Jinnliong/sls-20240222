@@ -60,7 +60,7 @@ jobs:
         echo "The secret value is: ${MY_SECRET}" 
       env:
         MY_SECRET: ${{ steps.fetch_secret.outputs.secret_value }}
-  Perform Vulnerability Scan:
+  scan:
     name: Scan using SNYK
     runs-on: ubuntu-latest
     needs: deploy
