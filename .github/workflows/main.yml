@@ -23,7 +23,7 @@ jobs:
   scan:
     name: Scan using SNYK
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: install-dependencies
     steps:
       - name: Install Snyk 
         run: npm install -g snyk
@@ -37,7 +37,7 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
-    needs: install-dependencies
+    needs: scan
     strategy:
       matrix:
         node-version: [18.x]
