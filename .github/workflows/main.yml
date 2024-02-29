@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+      - name: Generate package-lock.json
+        run: npm install --package-lock-only  
       - name: Run Installation of Dependencies Commands
         run: npm install
   deploy:
