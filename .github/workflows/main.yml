@@ -60,10 +60,14 @@ jobs:
   
   lint:
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: install-dependencies
     steps:
       - uses: actions/checkout@v3
       - name: Install ESLint
         run: npm install -g eslint
+      - name: Install ESLint plugins (optional)
+        run: npm install eslint-plugin-react # Example plugin
+      - name: Create ESLint configuration
+        run: npm init @eslint/config
       - name: Run ESLint
         run: eslint .
