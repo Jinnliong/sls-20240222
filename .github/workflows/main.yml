@@ -60,7 +60,7 @@ jobs:
   
   lint:
     runs-on: ubuntu-latest
-    needs: install-dependencies
+    needs: deploy
     steps:
       - uses: actions/checkout@v3
       - name: Install ESLint
